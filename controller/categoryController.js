@@ -1,9 +1,10 @@
 
 const database = require("../configs/database");
 const {pool} = require("../configs/database");
+const asyncHandler = require('express-async-handler')
 
 
-let getAllCategory = async (req, res) => {
+let getAllCategory = asyncHandler(async (req, res) => {
     const statement = `SELECT id, name, image, description, parentID
             FROM admin.product_category
             WHERE parentID is null;`
@@ -13,7 +14,7 @@ let getAllCategory = async (req, res) => {
         message: 200,
         data: rows
     });
-}
+});
 
 let getCategoryByParentId = async (req, res) => {
     console.log(req.body.id)

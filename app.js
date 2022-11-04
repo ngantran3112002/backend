@@ -6,6 +6,7 @@ const logger = require('morgan');
 // const productRouter = require('./routes/productRoute')
 const categoryRouter = require('./routes/categoryRoute')
 const productRouter = require('./routes/productRoute')
+const orderRouter = require('./routes/orderRoute')
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/category', categoryRouter);
 app.use('/product', productRouter);
+app.use('/order', orderRouter);
 
 app.listen(5000, () => {
     console.log("Running")
