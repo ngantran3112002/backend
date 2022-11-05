@@ -1,10 +1,11 @@
 const config = {
     db: {
         /* don't expose password or any sensitive info, done only for demo */
-        host: "localhost",
+        host: "pop-os",
         user: "root",
         password: "ASD123qwe@",
         database: "admin",
+        socketPath: '/var/run/mysqld/mysqld.sock',
         connectionLimit : 100, //important
 
     },
