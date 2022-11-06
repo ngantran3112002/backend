@@ -1,5 +1,4 @@
 const config = require('../configs/config')
-
 const Sequelize = require('sequelize')
 
 const sequelize = new Sequelize(config.db.database, config.db.user, config.db.password, {
@@ -12,7 +11,7 @@ const sequelize = new Sequelize(config.db.database, config.db.user, config.db.pa
         idle: 10000
     },
     dialectOptions: {
-        socketPath: config.db.socketPath
+        // socketPath: config.db.socketPath
     }
 })
 
@@ -23,7 +22,6 @@ const sequelize = new Sequelize(config.db.database, config.db.user, config.db.pa
     }) 
 
 
-sequelize.sync({ force: false})
 module.exports = {
     sequelize
 }
