@@ -15,14 +15,17 @@ const OrderDetail = sequelize.define('orderDetail',{
     product_id: {
         type: DataTypes.INTEGER
     },
-    quantity: {
+    quantityOrdered: {
         type: DataTypes.INTEGER
+    },
+    priceEach: {
+        type: DataTypes.DECIMAL(10,2)
     }
 },{
     tableName: 'order_details',
     timestamps: true
 })
 
-// sequelize.sync({force: false})
+
 
 module.exports = OrderDetail;

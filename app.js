@@ -7,6 +7,11 @@ const logger = require('morgan');
 const categoryRouter = require('./routes/categoryRoute')
 const productRouter = require('./routes/productRoute')
 const orderRouter = require('./routes/orderRoute')
+const transactionRouter = require('./routes/transactionRoute')
+
+
+
+const sequelize = require('./model/Sequelize').sequelize;
 
 const app = express();
 
@@ -16,12 +21,24 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+sequelize.sync({force: false});
+
 
 app.use('/category', categoryRouter);
 app.use('/product', productRouter);
 app.use('/order', orderRouter);
+app.use('/transaction', transactionRouter)
 
-app.listen(5000, () => {
+app.get('/', (req, res) => {
+    res.send("WORK")
+})
+
+
+
+
+
+
+app.listen(3000, () => {
     console.log("Running")
 })
 

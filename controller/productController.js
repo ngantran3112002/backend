@@ -1,8 +1,10 @@
 
 const database = require('../configs/database')
+const sequelize = require('../model/Sequelize').sequelize
+const Product = require('../model/productModel')
 
 const getAllProducts = async (req, res) => {
-    const [rows,field] = await database.pool.execute('SELECT id, name, Description, category_id, quantity, price, discount_id, image, createdDate, modifiedDate\n' +
+    const [rows,field] = await database.pool.execute('SELECT *\n' +
         'FROM admin.products;')
     return res.json({
         data: rows

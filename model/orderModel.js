@@ -1,4 +1,4 @@
-const { Sequelize, DataTypes} = require('sequelize')
+const {Model, DataTypes} = require('sequelize')
 const sequelize = require('./Sequelize').sequelize;
 
 // DATA BÊN FRONT GỬI SẼ NHƯ THẾ NÀY VÀ **** HÃY GỬI DƯỚI FORMAT JSON ****
@@ -23,14 +23,9 @@ const sequelize = require('./Sequelize').sequelize;
 //     ]
 // }
 
-
-
-
-
-
 const Order = sequelize.define('order', {
     id: {
-        type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true
+        type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, unique: true
     },
     user_id: {
         type: DataTypes.STRING(100)
@@ -41,6 +36,10 @@ const Order = sequelize.define('order', {
     total: {
         type: DataTypes.DECIMAL(10,0)
     },
+    status: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: 0,
+    }
 }, {
     tableName: 'orders',
     timestamps: true

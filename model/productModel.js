@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize');
+const {Sequelize ,DataTypes } = require('sequelize');
 
 const sequelize = require('./Sequelize').sequelize;
 
@@ -15,18 +15,29 @@ const Product = sequelize.define('product',
         } ,
         Description:{ type: DataTypes.STRING(255), defaultValue: 'khong co mo ta'},
         categoryId:{ type: DataTypes.INTEGER},
-        quantity:{ type: DataTypes.INTEGER},
+        quantityInStock:{ type: DataTypes.INTEGER},
         price: {
             type: DataTypes.DECIMAL(15,4),
 
         },
-        discountId: {type: DataTypes.INTEGER, defaultValue: 'none'},
+        discountId: {type: DataTypes.INTEGER, defaultValue: 0},
         image: {type: DataTypes.STRING, defaultValue: 'khong co link anh'}
     },
-    {
+    {   
+        
         tableName: 'products',
         timestamps: true,
     }
 )
+    // for(i = 1; i <= 5; i++) {
+    //     Product.create({
+    //         name: 'SA-IV-' + i,
+    //         categoryId: 34,
+    //         quantityInStock: i*3+14,
+
+    //         price: 11000 + i * 4000,
+    //     })
+    // }
+
 
 module.exports = Product;
