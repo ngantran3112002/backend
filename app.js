@@ -9,9 +9,12 @@ const productRouter = require('./routes/productRoute')
 const orderRouter = require('./routes/orderRoute')
 const transactionRouter = require('./routes/transactionRoute')
 
-
+ 
 
 const sequelize = require('./model/Sequelize').sequelize;
+//model
+// const User = require('./model/userModel'); 
+
 
 const app = express();
 
@@ -21,7 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-sequelize.sync({force: false});
+sequelize.sync({alter: true});
 
 
 app.use('/category', categoryRouter);

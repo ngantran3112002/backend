@@ -11,13 +11,13 @@ const Product = sequelize.define('product',
         name:{
             type: DataTypes.STRING(255),
             unique: true
-            
         } ,
         Description:{ type: DataTypes.STRING(255), defaultValue: 'khong co mo ta'},
-        categoryId:{ type: DataTypes.INTEGER},
-        quantityInStock:{ type: DataTypes.INTEGER},
+        categoryId:{ type: DataTypes.INTEGER, defaultValue: 0},
+        quantityInStock:{ type: DataTypes.INTEGER, defaultValue: 0},
         price: {
             type: DataTypes.DECIMAL(15,4),
+            defaultValue: 0000000,
 
         },
         discountId: {type: DataTypes.INTEGER, defaultValue: 0},

@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes} = require('sequelize')
 const sequelize = require('./Sequelize').sequelize;
+const Order = require('./orderModel');
 
 const OrderDetail = sequelize.define('orderDetail',{
     id: {
@@ -7,13 +8,6 @@ const OrderDetail = sequelize.define('orderDetail',{
         primaryKey: true,
         autoIncrement: true,
 
-    },
-    order_id: {
-        type: DataTypes.INTEGER
-
-    },
-    product_id: {
-        type: DataTypes.INTEGER
     },
     quantityOrdered: {
         type: DataTypes.INTEGER
@@ -23,9 +17,8 @@ const OrderDetail = sequelize.define('orderDetail',{
     }
 },{
     tableName: 'order_details',
-    timestamps: true
+    // timestamps: true
 })
-
 
 
 module.exports = OrderDetail;
