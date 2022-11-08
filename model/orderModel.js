@@ -57,20 +57,20 @@ Order.belongsToMany(Product, {through: OrderDetail, unique: false, foreignKey: '
 Product.belongsToMany(Order, {through: OrderDetail, unique: true, foreignKey: 'productId'});
 
 
-// Product.hasMany(OrderDetail,
-//     {
-//         foreignKey: 'productId',  // You need to define the foreign key
-//     }
-// );
-// OrderDetail.belongsTo(Product, {
-//     foreignKey: 'productId'
-// });
-// Order.hasMany(OrderDetail, {
-//     foreignKey: 'orderId'
-// });
-// OrderDetail.belongsTo(Order, {
-//     foreignKey: 'orderId'
-// });
+Product.hasMany(OrderDetail,
+    {
+        foreignKey: 'productId',  // You need to define the foreign key
+    }
+);
+OrderDetail.belongsTo(Product, {
+    foreignKey: 'productId'
+});
+Order.hasMany(OrderDetail, {
+    foreignKey: 'orderId'
+});
+OrderDetail.belongsTo(Order, {
+    foreignKey: 'orderId'
+});
 
 
 module.exports = Order

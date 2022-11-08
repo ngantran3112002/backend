@@ -7,6 +7,7 @@ const OrderDetail = require('../model/orderDetailsModel');
 const Payment = require('../model/paymentModel');
 const User = require('../model/userModel')
 const { where } = require('sequelize');
+const Product = require('../model/productModel');
 
 
 
@@ -14,24 +15,10 @@ const insertDetails = 'INSERT INTO admin.order_details (order_id, product_id, mo
 
 
 const getOrderInfo = asyncHandler(async (req, res) => {
-    const orderID = req.orderID;
-    let userId = req.userId;
-    // const data  = [{}]
-    const data = await OrderDetail.findAll({
-        where: {
-            order_id: {
-                [Op.eq]: orderID
-            }
-        }
-    })
-
-    const paymentInfo = await Payment.findAll({
-        where: {
-
-        }
-    })
-   
-   return res;
+    const orderID = req.body["orderId"];
+    const order = await Order.findByPk(orderID);
+    const results = await Order.findAll({include: Product, where: {id: orderID}})
+   return res.json(results);
 })
 
 
