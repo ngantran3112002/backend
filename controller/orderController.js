@@ -11,10 +11,12 @@ const Product = require('../model/productModel');
 
 
 
+
 const insertDetails = 'INSERT INTO admin.order_details (order_id, product_id, modified_at, quantity, created_at) VALUES(?, ?, CURRENT_TIMESTAMP, ?, CURRENT_TIMESTAMP);'
 
 
 const getOrderInfo = asyncHandler(async (req, res) => {
+
     const orderID = req.body["orderId"];
     const order = await Order.findByPk(orderID);
     const results = await Order.findAll({include: Product, where: {id: orderID}})
