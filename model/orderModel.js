@@ -57,6 +57,7 @@ Order.belongsToMany(Product, {through: OrderDetail, unique: false, foreignKey: '
 Product.belongsToMany(Order, {through: OrderDetail, unique: true, foreignKey: 'productId'});
 
 
+
 Product.hasMany(OrderDetail,
     {
         foreignKey: 'productId',  // You need to define the foreign key
@@ -71,6 +72,7 @@ Order.hasMany(OrderDetail, {
 OrderDetail.belongsTo(Order, {
     foreignKey: 'orderId'
 });
+
 
 
 module.exports = Order
