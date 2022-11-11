@@ -3,8 +3,8 @@ const config = {
         /* don't expose password or any sensitive info, done only for demo */
         host: "localhost",
         user: "root",
-        password: "ASD123qwe@",
-        database: "admin",
+        password: "",
+        database: "web",
         // socketPath: '/var/run/mysqld/mysqld.sock',
         connectionLimit : 100, //important
 
