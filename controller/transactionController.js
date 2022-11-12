@@ -1,10 +1,10 @@
 //handle khi người dùng xác nhận order
 const asyncHandler = require('express-async-handler');
 const sequelize = require('../model/Sequelize').sequelize;
-const Order = require('../model/orderModel');
-const OrderDetail = require('../model/orderDetailsModel');
-const Payment = require('../model/paymentModel');
-const Product = require('../model/productModel');
+const Order = require('../model/order.model');
+const OrderDetail = require('../model/orderDetails.model');
+const Payment = require('../model/payment.model');
+const Product = require('../model/product.model');
 const { or } = require('sequelize');
 
 

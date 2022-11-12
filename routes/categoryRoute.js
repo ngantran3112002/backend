@@ -1,9 +1,10 @@
 const express = require('express')
-const router = express.Router()
+const categoryRouter = express.Router()
 const categoryController = require('../controller/categoryController')
+const auth = require("../auth/verifyToken")
 
-router.get('/all', categoryController.getAllCategory)
+categoryController.get('/all',auth.verifyController, categoryController.getAllCategory)
 
-router.get('/id', categoryController.getCategoryByParentId)
+router.get('/id',auth.verifyController ,categoryController.getCategoryByParentId)
 
-module.exports = router
+module.exports = categoryRouter

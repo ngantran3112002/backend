@@ -1,7 +1,7 @@
 const {Sequelize ,DataTypes } = require('sequelize');
 
 const sequelize = require('./Sequelize').sequelize;
-const category = require('./categoryModel')
+const Category = require('./category.model')
 
 const Product = sequelize.define('product', 
     {
@@ -16,7 +16,7 @@ const Product = sequelize.define('product',
         categoryId:{ type: DataTypes.INTEGER, defaultValue: 0},
         quantityInStock:{ type: DataTypes.INTEGER, defaultValue: 0},
         price: {
-            type: DataTypes.DECIMAL(15,4),
+            type: DataTypes.DECIMAL(15,0),
             defaultValue: 0000000,
 
         },
@@ -29,19 +29,13 @@ const Product = sequelize.define('product',
         timestamps: true,
     }
 )
-    // for(i = 1; i <= 5; i++) {
-    //     Product.create({
-    //         name: 'SA-IV-' + i,
-    //         categoryId: 34,
-    //         quantityInStock: i*3+14,
-
-    //         price: 11000 + i * 4000,
-    //     })
-    // }
-category.hasOne(Product, {
+    
+Category.hasMany(Product, {
     foreignKey : 'categoryId',
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE'
 })
+
+Product.belongsTo(Category)
 
 module.exports = Product;

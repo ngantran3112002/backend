@@ -1,7 +1,7 @@
 
 const database = require('../configs/database')
 const sequelize = require('../model/Sequelize').sequelize
-const Product = require('../model/productModel')
+const Product = require('../model/product.model')
 
 const getAllProducts = async (req, res) => {
     const [rows,field] = await database.pool.execute('SELECT *\n' +

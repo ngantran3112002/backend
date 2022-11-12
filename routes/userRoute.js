@@ -1,5 +1,5 @@
 const express = require('express');
-const middleware = require("../controller/middleware");
+const middleware = require("../auth/verifyToken");
 const userController = require('../controller/userController');
 const userRouter = express.Router();
 

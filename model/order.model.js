@@ -1,30 +1,11 @@
 const {Model, DataTypes} = require('sequelize')
 const sequelize = require('./Sequelize').sequelize;
 
-const OrderDetail = require('./orderDetailsModel');
-const User = require('./userModel')
-const Product = require('./productModel')
+const OrderDetail = require('./orderDetails.model');
+const User = require('./user.model')
+const Product = require('./product.model')
 // DATA BÊN FRONT GỬI SẼ NHƯ THẾ NÀY VÀ **** HÃY GỬI DƯỚI FORMAT JSON ****
-// {
-//     "user_id": 2,
-//     "total": 0,
-//     "payment_id": 2,
-//     "thong tin lq den payment": {
-//         payment Type
-//         bn,
-//         chon don vi ship nao,
-//     }
-//     "orderDetails": [  <--- đây là 1 array 
-//         {
-//             "product_id": 2,
-//             "quantity": 2
-//         },
-//         {
-//             "product_id": 2,
-//             "quantity": 2
-//         }
-//     ]
-// }
+
 
 const Order = sequelize.define('order', {
     id: {
@@ -47,10 +28,9 @@ const Order = sequelize.define('order', {
     tableName: 'orders',
     timestamps: true
 })
-// if A has a b_id column, then A belongsTo B.
-// Order.belongsTo(User, {as: 'orderOwner', foreignKey: 'user_id'}); // tao user_id ở model Order
-// User.hasMany(Order, {as: 'ordered', foreignKey:"user_id"});
-//db.food.hasMany(db.meal, {as : 'Food', foreignKey : 'idFood'});
+// if A has a b_id column, then A belongsTo B
+User.hasMany(Order, {foreignKey:"user_id"});
+Order.belongsTo(User); // tao user_id ở model Order
 
 
 Order.belongsToMany(Product, {through: OrderDetail, unique: false, foreignKey: 'orderId'});

@@ -10,8 +10,10 @@ const categoryRouter = require('./routes/categoryRoute')
 const productRouter = require('./routes/productRoute')
 const orderRouter = require('./routes/orderRoute')
 const transactionRouter = require('./routes/transactionRoute')
-
-
+const adminProductRouter = require("./routes/admin.product.route");
+const adminCategoryRouter = require("./routes/admin.category.route");
+const userRouter = require("./routes/userRoute");
+const { notFound, errHandler } = require('./auth/middleware/error');
 
 const sequelize = require('./model/Sequelize').sequelize;
 //model
@@ -34,6 +36,14 @@ app.use('/category', categoryRouter);
 app.use('/product', productRouter);
 app.use('/order', orderRouter);
 app.use('/transaction', transactionRouter)
+app.use('/adminProduct', adminProductRouter)
+app.use('/adminCategory', adminCategoryRouter)
+app.use('/user', userRouter)
+
+app.use(notFound);
+app.use(errHandler);
+
+
 
 app.get('/', (req, res) => {
     res.send("WORK")
