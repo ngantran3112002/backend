@@ -12,7 +12,7 @@ module.exports = {
                 name: body.name,
                 description: body.description,
                 parentId: body.parentId,
-                image: body.image
+                image: "public/images/" + req.file.originalname
             });
         } catch(error) {
             return res.status(500).json({
@@ -73,7 +73,7 @@ module.exports = {
                 name: data.name,
                 description: data.description,
                 parentId: data.parentId,
-                image: data.image
+                image: "public/images/" + req.file.originalname
             },{
                 where: {
                     id: id

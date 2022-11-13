@@ -7,12 +7,13 @@ const {
 } = require('../controller/admin/admin.category.controller');
 
 const router = require('express').Router();
-const {checkToken} = require('../auth/token_validation')
+const {checkToken} = require('../middleware/token_validation');
+const {upload} = require('../middleware/upload');
 
-router.post('/category', checkToken,createCategory);
+router.post('/category', checkToken,upload.single('image'),createCategory);
 router.get('/category/:id',checkToken, getCategoryByCategoryId);
 router.get('/category', checkToken,getCategories);
-router.patch('/category/:id', checkToken,updateCategory);
+router.patch('/category/:id',checkToken,upload.single('image'),updateCategory);
 router.delete('/category/:id', checkToken,deleteCategory);
 
 

@@ -16,7 +16,7 @@ module.exports = {
                 quantity: body.quantity,
                 price: body.price,
                 discount_id: body.discount_id,
-                image: body.image
+                image: "public/images/" + req.file.originalname
             });
         } catch(error) {
             return res.status(500).json({
@@ -26,7 +26,7 @@ module.exports = {
         }
 
         return res.status(200).json({
-            "success": 0,
+            "success": 1,
             "message": product
         })
         
@@ -80,7 +80,7 @@ module.exports = {
                 quantityInStock: data.quantityInStock,
                 price: data.price,
                 discountId: data.discountId,
-                image: data.image
+                image: "public/images/" + req.file.originalname
             },{
                 where: {
                     productId: id
@@ -116,39 +116,39 @@ module.exports = {
             message: "delete successfully"
         });
         
-    },
-    login: (req, res) => {
-        const data = req.body;
-        getAdminAccount(data.username, (err, results) => {
-            if(err) {
-                return res.json({
-                    success: 0,
-                    message: "invalid username or password"
-                });
-            }
-            // const result = compareSync(data.password, results.Password);
-            console.log(data.password)
-            console.log(results.password);
-            if(data.password === results.password) {
-                results.password = undefined;
-                const jsontoken = sign({result:results}, 'qwe1234',{
-                    expiresIn: "1h"
-                })
-
-                return res.json({
-                    success: 1,
-                    message: "login successfully",
-                    token: jsontoken
-                });
-
-            }
-            else{
-                return res.json({
-                    success: 0,
-                    message: "invalid account or password"
-                });
-            }
-        });
-
     }
+    // login: (req, res) => {
+    //     const data = req.body;
+    //     getAdminAccount(data.username, (err, results) => {
+    //         if(err) {
+    //             return res.json({
+    //                 success: 0,
+    //                 message: "invalid username or password"
+    //             });
+    //         }
+    //         // const result = compareSync(data.password, results.Password);
+    //         console.log(data.password)
+    //         console.log(results.password);
+    //         if(data.password === results.password) {
+    //             results.password = undefined;
+    //             const jsontoken = sign({result:results}, 'qwe1234',{
+    //                 expiresIn: "1h"
+    //             })
+
+    //             return res.json({
+    //                 success: 1,
+    //                 message: "login successfully",
+    //                 token: jsontoken
+    //             });
+
+    //         }
+    //         else{
+    //             return res.json({
+    //                 success: 0,
+    //                 message: "invalid account or password"
+    //             });
+    //         }
+    //     });
+
+    // }
 }
