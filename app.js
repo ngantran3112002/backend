@@ -29,16 +29,17 @@ app.use(bodyParser.json())
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-sequelize.sync({alter: true});
+sequelize.sync({alter: false});
 
 
 app.use('/category', categoryRouter);
-app.use('/product', productRouter);
 app.use('/order', orderRouter);
 app.use('/transaction', transactionRouter)
 app.use('/adminProduct', adminProductRouter)
 app.use('/adminCategory', adminCategoryRouter)
+app.use('/product', productRouter);
 app.use('/user', userRouter)
+
 
 app.use(notFound);
 app.use(errHandler);

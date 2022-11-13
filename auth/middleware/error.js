@@ -1,18 +1,24 @@
+
+
 const notFound = (req, res, next) => {
-    const err = new Error(`Not found  - ${req.orginalUrl}`)
-    res.status(404);
+    const err = new Error(`Không tìm thấy đường dẫn này -- ${req.originalUrl} `)
+    err.status = 404;
+    // console.log(err);
+    // res.json({mess: err.message})
     next(err)
 }
 
 
+
 const errHandler = (err, req, res, next) => {
-    const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
-    res.status(statusCode);
-    res.json({
-        message: err.message,
-        stack: err.stack;
+    
+    res.status(err.status || 500).json({
+        message: err.message || "Lỗi server",
+        status: err.status || 500
     })
 }
 
-
-export {notFound,errHandler}
+module.exports = {
+    notFound,
+    errHandler
+}
