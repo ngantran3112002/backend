@@ -8,7 +8,11 @@ const { sequelize } = require('../model/Sequelize')
 const getAllProducts = async (req, res,next) => {
     await Product.findAll()
         .then((data) => res.json(data)) 
-        .catch((err) => next(err, req, res, next))
+        .catch((err) => {
+            const e = new Error("có lỗi khi fetch data từ server")
+            e.stack = e
+            next(e, req, res, next)
+        }) 
 }
 
 const getProductDetail = async (req, res, next) => {

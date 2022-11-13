@@ -30,17 +30,18 @@ Product.hasMany(OrderDetail,
     }
 );
 
-
-//user and details
-User.hasOne(UserDetails); // A HasOne B
-UserDetails.belongsTo(User); // A BelongsTo B
-
 OrderDetail.belongsTo(Product, {
     foreignKey: 'productId'
 });
 OrderDetail.belongsTo(Order, {
     foreignKey: 'orderId'
 });
+
+//user and details
+User.hasOne(UserDetails); // A HasOne B
+UserDetails.belongsTo(User); // A BelongsTo B
+
+
 
 
 module.exports = {
