@@ -6,6 +6,7 @@ const auth = require("../auth/verifyToken")
 // orderRouter.post('/add', orderController.addOrder)
 orderRouter.get('/details',auth.verifyController ,orderController.getOrderDetails)
 orderRouter.get('/detailsTest',orderController.getOrderDetails)
+orderRouter.get('/user/all', orderController.getAllOrder)
 orderRouter.post('/create', orderController.createOrder)
 
 module.exports = orderRouter

@@ -23,7 +23,7 @@ const UserDetails = sequelize.define('UserDetails',
         }
     },
     {
-        tableName: 'user',
+        tableName: 'user_details',
         timestamps: true,
     }
 )
