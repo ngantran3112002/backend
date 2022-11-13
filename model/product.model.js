@@ -1,8 +1,6 @@
 const {Sequelize ,DataTypes } = require('sequelize');
 
 const sequelize = require('./Sequelize').sequelize;
-const category = require('./category.model')
-
 const Product = sequelize.define('product', 
     {
         productId: {
@@ -10,23 +8,37 @@ const Product = sequelize.define('product',
         },
         name:{
             type: DataTypes.STRING(255),
-            unique: true
+            unique: true,
+            allowNull: false
         } ,
-        description:{ type: DataTypes.STRING(255), defaultValue: 'khong co mo ta'},
+        description:{ type: DataTypes.STRING, defaultValue: 'không có link ảnh'},
         categoryId:{ type: DataTypes.INTEGER, defaultValue: 0},
-        quantityInStock:{ type: DataTypes.INTEGER, defaultValue: 0},
+        quantityInStock:{ type: DataTypes.INTEGER(15), defaultValue: 10,},
         price: {
             type: DataTypes.DECIMAL(15,0),
             defaultValue: 0000000,
 
         },
         discountId: {type: DataTypes.INTEGER, defaultValue: 0},
-        image: {type: DataTypes.STRING, defaultValue: 'khong co link anh'}
+        image: {type: DataTypes.STRING, defaultValue: `https://via.placeholder.com/150.png}`},
+        createdAt: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: new Date(),
+            field: 'created_at'
+        },
+        updatedAt: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: new Date(),
+            field: 'updated_at'
+        },
     },
     {   
-        
         tableName: 'products',
-        timestamps: true,
+        timestamps: false,
     }
 )
+
+
 module.exports = Product;

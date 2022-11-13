@@ -1,6 +1,4 @@
 
-const database = require("../configs/database");
-const {pool} = require("../configs/database");
 const asyncHandler = require('express-async-handler')
 const Payment = require('../model/payment.model');
 

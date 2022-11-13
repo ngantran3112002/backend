@@ -6,13 +6,12 @@ const bodyParser = require('body-parser')
 
 
 // const productRouter = require('./routes/productRoute')
-const categoryRouter = require('./routes/categoryRoute')
-const productRouter = require('./routes/productRoute')
-const orderRouter = require('./routes/orderRoute')
-const transactionRouter = require('./routes/transactionRoute')
+const categoryRouter = require('./routes/category.route')
+const productRouter = require('./routes/product.route')
+const orderRouter = require('./routes/order.route')
 const adminProductRouter = require("./routes/admin.product.route");
 const adminCategoryRouter = require("./routes/admin.category.route");
-const userRouter = require("./routes/userRoute");
+const userRouter = require("./routes/user.route");
 const { notFound, errHandler } = require('./auth/middleware/error');
 
 const sequelize = require('./model/Sequelize').sequelize;
@@ -29,12 +28,11 @@ app.use(bodyParser.json())
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-sequelize.sync({alter: false});
+// sequelize.sync({alter: false});
 
 
 app.use('/category', categoryRouter);
 app.use('/order', orderRouter);
-app.use('/transaction', transactionRouter)
 app.use('/adminProduct', adminProductRouter)
 app.use('/adminCategory', adminCategoryRouter)
 app.use('/product', productRouter);

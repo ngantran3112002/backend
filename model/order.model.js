@@ -1,9 +1,6 @@
 const {Model, DataTypes} = require('sequelize')
 const sequelize = require('./Sequelize').sequelize;
 
-const OrderDetail = require('./orderDetails.model');
-const User = require('./user.model')
-const Product = require('./product.model')
 // DATA BÊN FRONT GỬI SẼ NHƯ THẾ NÀY VÀ **** HÃY GỬI DƯỚI FORMAT JSON ****
 
 
@@ -13,45 +10,36 @@ const Order = sequelize.define('order', {
     },
     user_id: {
         type: DataTypes.INTEGER,
+        allowNull: false
     },
     payment_id : {
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        allowNull: false
     },
     total: {
-        type: DataTypes.DECIMAL(10,0)
+        type: DataTypes.DECIMAL(10,0),
+        allowNull: false
     },
     status: {
         type: DataTypes.BOOLEAN,
         defaultValue: 0,
-    }
-}, {
+    },
+    createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: new Date(),
+        field: 'created_at'
+    },
+    updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: new Date(),
+        field: 'updated_at'
+    },
     tableName: 'orders',
-    timestamps: true
+    timestamps: false
 })
-// if A has a b_id column, then A belongsTo B
-User.hasMany(Order, {foreignKey:"user_id"});
-Order.belongsTo(User); // tao user_id ở model Order
 
-
-Order.belongsToMany(Product, {through: OrderDetail, unique: false, foreignKey: 'orderId'});
-Product.belongsToMany(Order, {through: OrderDetail, unique: true, foreignKey: 'productId'});
-
-
-
-Product.hasMany(OrderDetail,
-    {
-        foreignKey: 'productId',  // You need to define the foreign key
-    }
-);
-OrderDetail.belongsTo(Product, {
-    foreignKey: 'productId'
-});
-Order.hasMany(OrderDetail, {
-    foreignKey: 'orderId'
-});
-OrderDetail.belongsTo(Order, {
-    foreignKey: 'orderId'
-});
 
 
 

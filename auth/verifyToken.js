@@ -1,18 +1,15 @@
 const jwt = require("jsonwebtoken");
-const createErr = require("createerror")
 const verifyController = (req, res, next) => {
 
-    if (req.headers['authorization']) {
-        const beaerToken = req.headers['authorization'].split(' ')//beaer token
-        const token = beaerToken[1];
-        jwt.verify(token, "secretKey", (err, payload) => {
-            if (err) { 
-                return next(createErr.Unauthorized())
-                // next(createErr)
+    if (req.headers.authorization) {
+        const accessToken = req.headers.authorization.split(' ')[1];
+        jwt.verify(accessToken, "secretKey", (err, user) => {
+            if (err) {
+                // 403 is forbidden
+                return res.status(403).json("Token is not valid")
             }
+            next();
         });
-        req.payload = payload
-        next()
     } else {
         return res.status(401).json("not authenticated");
     }

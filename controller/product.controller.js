@@ -1,7 +1,9 @@
 
-const database = require('../configs/database')
+const { createConfigItemSync } = require('@babel/core')
+const { Sequelize, Op } = require('sequelize')
 // const sequelize = require('../model/Sequelize').sequelize
 const Product = require('../model/product.model')
+const { sequelize } = require('../model/Sequelize')
 
 const getAllProducts = async (req, res,next) => {
     await Product.findAll()
@@ -24,12 +26,10 @@ const getProductDetail = async (req, res, next) => {
         const err = new Error('Không tìm thấy sản phẩm cần tìm')
         next(err, req, res, next)
     }
-    // res.send(rows)
-
 }
-
 
 module.exports = {
     getAllProducts,
-    getProductDetail
+    getProductDetail,
+
 }
