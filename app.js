@@ -3,7 +3,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const bodyParser = require('body-parser')
-
+const cors = require('cors')
 
 // const productRouter = require('./routes/productRoute')
 const categoryRouter = require('./routes/category.route')
@@ -20,6 +20,7 @@ const sequelize = require('./model/Sequelize').sequelize;
 
 const app = express();
 
+app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -28,7 +29,7 @@ app.use(bodyParser.json())
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-sequelize.sync({alter: true});
+// sequelize.sync({alter: true});
 const model = require('./model/index')
 
 
@@ -51,7 +52,7 @@ app.get('/', (req, res) => {
 
 
 
-app.listen(3000, () => {
+app.listen(5000, () => {
     console.log("Running")
 })
 
