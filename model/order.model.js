@@ -24,22 +24,21 @@ const Order = sequelize.define('order', {
         type: DataTypes.BOOLEAN,
         defaultValue: 0,
     },
-    // createdAt: {
-    //     type: DataTypes.DATE,
-    //     allowNull: false,
-    //     defaultValue: DataTypes.NOW,
-    //     field: 'created_at'
-    // },
-    // updatedAt: {
-    //     type: DataTypes.DATE,
-    //     allowNull: false,
-    //     defaultValue: DataTypes.NOW,
-    //     field: 'updated_at'
-    // }
+    createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+        field: 'created_at'
+    },
+    updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+        field: 'updated_at'
+    }
     },
     {
         tableName: 'orders',
-        timestamps: false
     }
 )
 
