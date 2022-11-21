@@ -6,6 +6,12 @@ const Payment = require('./payment.model')
 const Category = require('./category.model')
 const UserDetails = require('./userDetails.model')
 
+// Order.sync();
+// OrderDetail.sync();
+// User.Sync();
+
+
+
 Category.hasMany(Category,{
     foreignKey: 'parentId',
     onDelete: 'CASCADE',
@@ -15,7 +21,7 @@ Category.hasMany(Category,{
 
 // if A has a b_id column, then A belongsTo B
 User.hasMany(Order, {foreignKey:"user_id"});
-Order.belongsTo(User); // tao user_id ở model Order
+Order.belongsTo(User,{foreignKey:"user_id"}); // tao user_id ở model Order
 
 // Order - Product
 Order.belongsToMany(Product, {through: OrderDetail, unique: false, foreignKey: 'orderId'});
@@ -30,17 +36,22 @@ Product.hasMany(OrderDetail,
     }
 );
 
-
-//user and details
-User.hasOne(UserDetails); // A HasOne B
-UserDetails.belongsTo(User); // A BelongsTo B
-
 OrderDetail.belongsTo(Product, {
     foreignKey: 'productId'
 });
 OrderDetail.belongsTo(Order, {
     foreignKey: 'orderId'
 });
+
+//user and details
+// User.hasOne(UserDetails); 
+// UserDetails.belongsTo(User); 
+
+// if A has a b_id column, then A belongsTo B
+Category.hasMany(Product, {foreignKey:"categoryId"});
+Product.belongsTo(Category); // tao user_id ở model Order
+
+
 
 
 module.exports = {

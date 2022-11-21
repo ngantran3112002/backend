@@ -8,6 +8,7 @@ router.get('/all',auth.verifyController, asyncHandler(productController.getAllPr
 router.get('/detail', auth.verifyController,productController.getProductDetail)
 router.get('/detailtest', asyncHandler(productController.getProductDetail))
 router.get('/alltest', asyncHandler(productController.getAllProducts))
+router.get('/pagetest', productController.getProductList)
 
 module.exports = router;
 

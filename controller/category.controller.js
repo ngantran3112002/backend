@@ -1,18 +1,20 @@
+const Category = require("../model/category.model")
 
 const asyncHandler = require('express-async-handler')
 const Payment = require('../model/payment.model');
 
 
 let getAllCategory = asyncHandler(async (req, res) => {
-    const statement = `SELECT id, name, image, description, parentID
-            FROM admin.product_category
-            WHERE parentID is null;`
-    const [rows, fields] = await database.pool.execute(statement);
-
-    return res.json({
-        message: 200,
-        data: rows
-    });
+    await Category.findAll({
+        where: {
+            parentId: null,
+        }
+    }).then((rows) => {
+        return res.status(200).json({
+            code: 200,
+            rows
+        })
+    })
 });
 
 let getCategoryByParentId = async (req, res) => {

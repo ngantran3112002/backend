@@ -20,7 +20,7 @@ const User = sequelize.define('User',
             allowNull: true,
             defaultValue: 'user1'
 
-        },
+        },        
         email: {
             type: DataTypes.STRING,
             allowNull: true,
@@ -37,7 +37,7 @@ const User = sequelize.define('User',
     },
     {
         tableName: 'user',
-        timestamps: true,
+        // timestamps: true,
     }
 )
 

@@ -4,8 +4,9 @@ const Order = require('../model/order.model')
 const OrderDetail = require('../model/orderDetails.model');
 const Payment = require('../model/payment.model');
 const User = require('../model/user.model')
-const { where } = require('sequelize');
+const { where, DataTypes } = require('sequelize');
 const Product = require('../model/product.model');
+const sequelize = require('../model/Sequelize').sequelize
 
 
 const getOrderDetails = asyncHandler(async (req, res, next) => {
@@ -16,6 +17,18 @@ const getOrderDetails = asyncHandler(async (req, res, next) => {
     return res.json(data)
     
 
+})
+
+const getAllOrder = asyncHandler(async (req, res, next) => {
+    const userId = req.body["userId"]
+    const results = await Order.findAll({
+        where: {
+            user_id: userId
+        },
+        order: [
+            ['createAt', 'DESC']
+          ]
+    })
 })
 
 const createOrder = asyncHandler(async (req, res,next) => {
@@ -29,6 +42,8 @@ const createOrder = asyncHandler(async (req, res,next) => {
                     payment_id: 2,
                     total: req_total,
                     status: true,
+                    create_at: DataTypes.NOW,
+                    update_at: DataTypes.NOW
                 }, {transaction: t1}
             )
 
@@ -58,5 +73,6 @@ const createOrder = asyncHandler(async (req, res,next) => {
 })
 module.exports = {
     getOrderDetails,
-    createOrder
+    createOrder,
+    getAllOrder
 }

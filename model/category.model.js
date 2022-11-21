@@ -27,12 +27,6 @@ const Category = sequelize.define('product_category',{
     freezeTableName: true
 });
 
-Category.hasMany(Category,{
-    foreignKey: 'parentId',
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE'
-});
-
 
 
 module.exports = Category;
