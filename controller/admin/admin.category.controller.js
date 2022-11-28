@@ -22,7 +22,7 @@ module.exports = {
         }
 
         return res.status(200).json({
-            "success": 0,
+            "success": 1,
             "message": catetory
         })
         

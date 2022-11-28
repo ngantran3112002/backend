@@ -10,6 +10,7 @@ const orderRouter = require('./routes/orderRoute')
 const transactionRouter = require('./routes/transactionRoute')
 const adminProductRouter = require("./routes/admin.product.route");
 const adminCategoryRouter = require("./routes/admin.category.route");
+const cartItemRoute = require('./routes/cartItemRoute');
 
  
 
@@ -30,6 +31,7 @@ sequelize.sync({force: false});
 
 app.use('/category', categoryRouter);
 app.use('/product', productRouter);
+app.use('/product',cartItemRoute);
 app.use('/order', orderRouter);
 app.use('/transaction', transactionRouter)
 app.use('/admin', adminProductRouter);
