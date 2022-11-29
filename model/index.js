@@ -5,6 +5,8 @@ const User = require('./user.model')
 const Payment = require('./payment.model')
 const Category = require('./category.model')
 const UserDetails = require('./userDetails.model')
+const Admin = require('./admin.model')
+
 
 // Order.sync();
 // OrderDetail.sync();
@@ -51,10 +53,12 @@ OrderDetail.belongsTo(Order, {
 Category.hasMany(Product, {foreignKey:"categoryId"});
 Product.belongsTo(Category); // tao user_id ở model Order
 
-
+const Model = {
+    User, Order, OrderDetail,
+    Product, Category, Payment, Admin
+}
 
 
 module.exports = {
-    User, Order, OrderDetail,
-    Product, Category, Payment
+    Model
 }
