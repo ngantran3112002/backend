@@ -9,11 +9,8 @@ let getAllCategory = asyncHandler(async (req, res) => {
         where: {
             parentId: null,
         }
-    }).then((rows) => {
-        return res.status(200).json({
-            code: 200,
-            rows
-        })
+    }).then((categories) => {
+        return res.status(200).json({categories})
     })
 });
 
