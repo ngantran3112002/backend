@@ -26,7 +26,7 @@ const Product = require('./productModel')
 //     ]
 // }
 
-const Order = sequelize.define('order', {
+const Order = sequelize.define('orders', {
     id: {
         type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, unique: true
     },
@@ -34,14 +34,23 @@ const Order = sequelize.define('order', {
         type: DataTypes.INTEGER,
     },
     payment_id : {
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        defaultValue: 1
     },
     total: {
         type: DataTypes.DECIMAL(10,0)
     },
     status: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: 0,
+        type: DataTypes.TINYINT,
+        defaultValue: 1,
+    },
+    order_address: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    order_phone: {
+        type: DataTypes.STRING,
+        allowNull: false
     }
 }, {
     tableName: 'orders',
@@ -53,8 +62,8 @@ const Order = sequelize.define('order', {
 //db.food.hasMany(db.meal, {as : 'Food', foreignKey : 'idFood'});
 
 
-Order.belongsToMany(Product, {through: OrderDetail, unique: false, foreignKey: 'orderId'});
-Product.belongsToMany(Order, {through: OrderDetail, unique: true, foreignKey: 'productId'});
+// Order.belongsToMany(Product, {through: OrderDetail, unique: false, foreignKey: 'orderId'});
+// Product.belongsToMany(Order, {through: OrderDetail, unique: true, foreignKey: 'productId'});
 
 
 
@@ -66,13 +75,18 @@ Product.hasMany(OrderDetail,
 OrderDetail.belongsTo(Product, {
     foreignKey: 'productId'
 });
+// Order.hasMany(OrderDetail, {
+//     foreignKey: 'orderId'
+// });
+// OrderDetail.belongsTo(Order, {
+//     foreignKey: 'orderId'
+// });
 Order.hasMany(OrderDetail, {
-    foreignKey: 'orderId'
+    foreignKey: 'order_id'
 });
-OrderDetail.belongsTo(Order, {
-    foreignKey: 'orderId'
-});
-
+// OrderDetail.belongsTo(Order, {
+//     foreignKey: 'order_id'
+// });
 
 
 module.exports = Order

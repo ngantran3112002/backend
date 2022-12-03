@@ -5,7 +5,7 @@ const category = require('./categoryModel')
 
 const Product = sequelize.define('product', 
     {
-        productId: {
+        id: {
             type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, unique: true
         },
         name:{
@@ -38,10 +38,8 @@ const Product = sequelize.define('product',
     //         price: 11000 + i * 4000,
     //     })
     // }
-category.hasOne(Product, {
-    foreignKey : 'categoryId',
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE'
-})
+category.hasMany(Product, {
+    foreignKey : 'categoryId'
+});
 
 module.exports = Product;

@@ -30,16 +30,17 @@ const CartItem = sequelize.define('cart_item', {
 
 
 
-Product.hasOne(CartItem, {
-    foreignKey: 'product_id',
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE'
+Product.hasMany(CartItem, {
+    foreignKey: 'product_id'
 });
-
+CartItem.belongsTo(Product, {
+    foreignKey: 'product_id'
+});
 ShoppingSession.hasMany(CartItem, {
-    foreignKey: 'session_id',
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE'
+    foreignKey: 'session_id'
+});
+CartItem.belongsTo(CartItem,{
+    foreignKey: 'session_id'
 });
 
 module.exports = CartItem;

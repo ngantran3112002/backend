@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-sequelize.sync({force: false});
+sequelize.sync({force: true});
 
 
 app.use('/category', categoryRouter);

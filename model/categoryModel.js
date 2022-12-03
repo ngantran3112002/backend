@@ -14,23 +14,13 @@ const Category = sequelize.define('product_category',{
         allowNull: false,
         unique: true
     },
-    image: {
-        type: DataTypes.STRING
-    },
     description: {
         type: DataTypes.STRING
     },
-    parentId: {
-        type: DataTypes.INTEGER
-    }
 },{
     freezeTableName: true
 });
 
-Category.hasMany(Category,{
-    foreignKey: 'parentId',
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE'
-});
+
 
 module.exports = Category;

@@ -19,7 +19,7 @@ module.exports = {
             })
         }
 
-        const [results, metadata] = await sequelize.query(`SELECT price from products where productid = ${data.product_id}`);
+        const [results, metadata] = await sequelize.query(`SELECT price from products where id = ${data.product_id}`);
         let ss = await Shopping_session.findAll({
             attributes: ['total'],
             where: {
@@ -64,5 +64,44 @@ module.exports = {
                 "message": error
             });
         }
+    },
+
+    getCartItems: async(req, res) => {
+        const data = req.body;
+        let cartItems;
+        let shopping_session;
+        const user_id = data.user_id;
+        try {
+            shopping_session = await Shopping_session.findOne({
+                where: {
+                    user_id : user_id
+                }
+            });
+        } catch(error) {
+            return res.status(500).json({
+                "success": 0,
+                "message": error
+            });
+        }
+        try {
+            [results, metadata] = await sequelize.query('SELECT c.id,c.product_id,c.quantity, p.name, p.Description, p.image from cart_item c join products p on p.id = c.product_id')
+            // cartItems = await CartItem.findAll({
+            //     where: {
+            //         session_id: shopping_session.id
+            //     }
+            // });
+            console.log(shopping_session.user_id);
+            cartItems = results;
+        } catch(err) {
+            return res.status(500).json({
+                "success": 0,
+                "message": err
+            });
+        }
+        return res.status(200).json({
+            "message":1,
+            "shopping_session": shopping_session,
+            "cart_items": cartItems
+        });
     }
 }

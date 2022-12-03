@@ -10,9 +10,7 @@ module.exports = {
         try {
             catetory = await Category.create({
                 name: body.name,
-                description: body.description,
-                parentId: body.parentId,
-                image: "public/images/" + req.file.originalname
+                description: body.description
             });
         } catch(error) {
             return res.status(500).json({
@@ -71,9 +69,9 @@ module.exports = {
         try {
             await Category.update({
                 name: data.name,
-                description: data.description,
-                parentId: data.parentId,
-                image: "public/images/" + req.file.originalname
+                description: data.description
+                // parentId: data.parentId,
+                // image: "public/images/" + req.file.originalname
             },{
                 where: {
                     id: id

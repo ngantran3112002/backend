@@ -6,16 +6,16 @@ const {sign} = require('jsonwebtoken');
 module.exports = {
     createProduct: async(req, res) => {
         const body = req.body;
-        
+        console.log(body.category_id);
         let product;
         try {
             product = await Product.create({
                 name: body.name,
                 description: body.description,
-                category_id: body.category_id,
-                quantity: body.quantity,
-                price: body.price,
-                discount_id: body.discount_id,
+                categoryId: parseInt(body.category_id),
+                quantityInStock: parseInt(body.quantity),
+                price: parseFloat(body.price),
+                discount_id: parseInt(body.discount_id),
                 image: "public/images/" + req.file.originalname
             });
         } catch(error) {
@@ -37,7 +37,7 @@ module.exports = {
         try{
             product = await Product.findAll({
                 where: {
-                    productId: id
+                    id: id
                 }
             })
         }catch(err) {
@@ -83,7 +83,7 @@ module.exports = {
                 image: "public/images/" + req.file.originalname
             },{
                 where: {
-                    productId: id
+                    id: id
                 }
             })
         }catch(err) {
@@ -102,7 +102,7 @@ module.exports = {
         try {
             await Product.destroy({
                 where: {
-                    productId: req.params.id
+                    id: req.params.id
                 }
             });
         } catch(err) {

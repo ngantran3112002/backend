@@ -25,9 +25,10 @@ const ShoppingSession = sequelize.define('shopping_session', {
 });
 
 User.hasOne(ShoppingSession, {
-    foreignKey: 'user_id',
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE'
-})
+    foreignKey: 'user_id'
+});
+ShoppingSession.belongsTo(User, {
+    foreignKey: 'user_id'
+});
 
 module.exports = ShoppingSession;

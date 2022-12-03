@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const {checkToken} = require('../middleware/token_validation');
-const {createCartItem, deleteCartItem}  = require('../controller/cartItemController');
+const {createCartItem, deleteCartItem, getCartItems}  = require('../controller/cartItemController');
 
 router.post('/cartItem', checkToken, createCartItem);
-router.delete('/cartItem/id', checkToken, deleteCartItem);
+router.delete('/cartItem/:id', checkToken, deleteCartItem);
+router.get('/cartItems',checkToken, getCartItems);
 
 module.exports = router;
