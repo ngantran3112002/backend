@@ -17,7 +17,7 @@ let getAllCategory = asyncHandler(async (req, res) => {
 let getCategoryByParentId = async (req, res) => {
     console.log(req.body.id)
     let id = req.body.id;
-    const [rows, fields]  = await database.pool.query('SELECT id, name, image, description, parentID FROM admin.product_category WHERE parentID = ?;', [id]);
+    const [rows, fields]  = await database.pool.query('SELECT id, name, image, description, parentID FROM Admin.product_category WHERE parentID = ?;', [id]);
     return res.json({
         message: 200,
         data: rows

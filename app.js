@@ -29,16 +29,16 @@ app.use(bodyParser.json())
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// sequelize.sync({alter: true});
+sequelize.sync().then(() => console.log("done")).catch((err) => console.log(err));
 const model = require('./model/index')
 
 
-app.use('/category', categoryRouter);
-app.use('/order', orderRouter);
-app.use('/adminProduct', adminProductRouter)
-app.use('/adminCategory', adminCategoryRouter)
-app.use('/product', productRouter);
-app.use('/user', userRouter)
+app.use('/categories', categoryRouter);
+app.use('/orders', orderRouter);
+app.use('/adminProducts', adminProductRouter)
+app.use('/adminCategories', adminCategoryRouter)
+app.use('/products', productRouter);
+app.use('/users', userRouter)
 
 
 app.use(notFound);

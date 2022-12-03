@@ -34,7 +34,7 @@ Order.hasMany(OrderDetail, {
 });
 Product.hasMany(OrderDetail,
     {
-        foreignKey: 'productId',  // You need to define the foreign key
+        foreignKey: 'id',  // You need to define the foreign key
     }
 );
 

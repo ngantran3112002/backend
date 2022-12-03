@@ -47,6 +47,7 @@ const getProductList = async (req, res, next) => {
 }
 
 
+
 const getProductByCategory = async (req, res, next) => {
 
     await Product.count({where: {categoryId: parseInt(req.query.category)}})

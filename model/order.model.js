@@ -1,8 +1,6 @@
 const {Model, DataTypes} = require('sequelize')
 const sequelize = require('./Sequelize').sequelize;
-
-// DATA BÊN FRONT GỬI SẼ NHƯ THẾ NÀY VÀ **** HÃY GỬI DƯỚI FORMAT JSON ****
-
+const moment = require("moment")
 
 const Order = sequelize.define('order', {
     id: {
@@ -28,13 +26,19 @@ const Order = sequelize.define('order', {
         type: DataTypes.DATE,
         allowNull: false,
         defaultValue: DataTypes.NOW,
-        field: 'created_at'
+        field: 'created_at',
+        get() {
+            return moment(this.getDataValue('createdAt')).format('DD/MM/YYYY h:mm:ss');
+        },
     },
     updatedAt: {
         type: DataTypes.DATE,
         allowNull: false,
         defaultValue: DataTypes.NOW,
-        field: 'updated_at'
+        field: 'updated_at',
+        get() {
+            return moment(this.getDataValue('createdAt')).format('DD/MM/YYYY h:mm:ss');
+        },
     }
     },
     {

@@ -3,7 +3,7 @@ const {Sequelize ,DataTypes } = require('sequelize');
 const sequelize = require('./Sequelize').sequelize;
 const Product = sequelize.define('product', 
     {
-        productId: {
+        id: {
             type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, unique: true
         },
         name:{
@@ -16,7 +16,7 @@ const Product = sequelize.define('product',
         quantityInStock:{ type: DataTypes.INTEGER(15), defaultValue: 10,},
         price: {
             type: DataTypes.DECIMAL(15,0),
-            defaultValue: 0000000,
+            defaultValue: 0,
 
         },
         discountId: {type: DataTypes.INTEGER, defaultValue: 0},
