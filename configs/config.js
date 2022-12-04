@@ -2,13 +2,13 @@ const config = {
     db: {
         /* don't expose password or any sensitive info, done only for demo */
         // host: "10.102.18.99",
-        user: "w42g9_web",
+        user: "root",
         host: "localhost",
-        password: "qwertyuiop",
-        database: "w42g9_web",
+        password: "",
+        database: "kubotadatabase",
         // database: "test",
         // socketPath: '/var/run/mysqld/mysqld.sock',
-        connectionLimit : 100, //important
+        connectionLimit: 100, //important
 
     },
 };

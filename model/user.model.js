@@ -20,24 +20,30 @@ const User = sequelize.define('User',
             allowNull: true,
             defaultValue: 'user1'
 
-        },        
+        },
         email: {
             type: DataTypes.STRING,
             allowNull: true,
             defaultValue: 'user1'
-
-
+        },
+        address: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            defaultValue: 'user1'
+        },
+        isAdmin: {
+            type: DataTypes.BOOLEAN,
+            allowNull: true,
         },
         phone: {
             type: DataTypes.STRING,
             allowNull: true,
             defaultValue: 'user1'
-
         }
     },
     {
         tableName: 'user',
-        // timestamps: true,
+        timestamps: true,
     }
 )
 

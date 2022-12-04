@@ -24,26 +24,37 @@ function comparePassword(plaintext, hashed) {
 
 //  using sequelize
 let RegisterUser = async (req, res) => {
-    let { userName, email, phone, password, address} = req.body;
+    let { userName, email, phone, password, address, isAdmin } = req.body;
     // return res.json({data: req.body});
-    if(!isIdUnique) {
-        return res.status(404).json({message: "Email đã được sử dụng"})
+    if (!isIdUnique) {
+        return res.status(404).json({ message: "Email đã được sử dụng" })
     }
     try {
-        let hashUserPassword = await hashPassword(password)
-        // create user
-        let newUser = await User.create({
-            userName: userName,
-            email: email,
-            phone: phone,
-            password: hashUserPassword
+        let existUser = await User.findOne({
+            where: { email: email }
         })
+        if (existUser) {
+            return res.json("Existed Email")
+        } else {
+            let hashUserPassword = await hashPassword(password)
+            // create user
+            let newUser = await User.create({
+                userName: userName,
+                email: email,
+                phone: phone,
+                password: hashUserPassword,
+                address: address,
+                isAdmin: isAdmin
+            })
+            await newUser.save();
+            return res.status(200).json({
+                message: "ok",
+                data: newUser
+            })
+        }
+
         // save to db
-        await newUser.save();
-        return res.status(200).json({
-            message: "ok",
-            data: newUser
-        })
+
 
     } catch (err) {
         return res.status(400).json(err)
@@ -123,9 +134,9 @@ const isIdUnique = async email => {
         },
         attribue: ['email']
     })
-    .then(token => token !== null)
-    .then(isIdUnique => isIdUnique)
-    
+        .then(token => token !== null)
+        .then(isIdUnique => isIdUnique)
+
 }
 module.exports = {
     RegisterUser, LoginUser, changePassword, viewUser

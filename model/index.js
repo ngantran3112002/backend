@@ -5,16 +5,9 @@ const User = require('./user.model')
 const Payment = require('./payment.model')
 const Category = require('./category.model')
 const UserDetails = require('./userDetails.model')
-const Admin = require('./admin.model')
+const Comment = require('./comment.model')
 
-
-// Order.sync();
-// OrderDetail.sync();
-// User.Sync();
-
-
-
-Category.hasMany(Category,{
+Category.hasMany(Category, {
     foreignKey: 'parentId',
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE'
@@ -22,21 +15,26 @@ Category.hasMany(Category,{
 
 
 // if A has a b_id column, then A belongsTo B
-User.hasMany(Order, {foreignKey:"user_id"});
-Order.belongsTo(User,{foreignKey:"user_id"}); // tao user_id ở model Order
+User.hasMany(Order, { foreignKey: "user_id" });
+Order.belongsTo(User); // tao user_id ở model Order
 
 // Order - Product
-Order.belongsToMany(Product, {through: OrderDetail, unique: false, foreignKey: 'orderId'});
-Product.belongsToMany(Order, {through: OrderDetail, unique: true, foreignKey: 'productId'});
+Order.belongsToMany(Product, { through: OrderDetail, unique: false, foreignKey: 'orderId' });
+Product.belongsToMany(Order, { through: OrderDetail, unique: true, foreignKey: 'productId' });
 
 Order.hasMany(OrderDetail, {
     foreignKey: 'orderId'
 });
 Product.hasMany(OrderDetail,
     {
-        foreignKey: 'id',  // You need to define the foreign key
+        foreignKey: 'productId',  // You need to define the foreign key
     }
 );
+
+
+//user and details
+User.hasOne(UserDetails); // A HasOne B
+UserDetails.belongsTo(User); // A BelongsTo B
 
 OrderDetail.belongsTo(Product, {
     foreignKey: 'productId'
@@ -45,20 +43,8 @@ OrderDetail.belongsTo(Order, {
     foreignKey: 'orderId'
 });
 
-//user and details
-// User.hasOne(UserDetails); 
-// UserDetails.belongsTo(User); 
-
-// if A has a b_id column, then A belongsTo B
-Category.hasMany(Product, {foreignKey:"categoryId"});
-Product.belongsTo(Category); // tao user_id ở model Order
-
-const Model = {
-    User, Order, OrderDetail,
-    Product, Category, Payment, Admin
-}
-
 
 module.exports = {
-    Model
+    User, Order, OrderDetail,
+    Product, Category, Payment, Comment
 }
