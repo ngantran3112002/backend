@@ -31,7 +31,8 @@ app.use(bodyParser.json())
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// sequelize.sync({ alter: true });
+// sequelize.sync({ force: true }).then(() => console.log("done")).catch((err) => console.log(err));
+const model = require('./model/index')
 
 
 app.use('/category', categoryRouter);
