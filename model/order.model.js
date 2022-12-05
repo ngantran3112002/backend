@@ -19,8 +19,8 @@ const Order = sequelize.define('order', {
         allowNull: false
     },
     status: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: 0,
+        type: DataTypes.TEXT,
+        defaultValue: "Chờ xét duyệt",
     },
     createdAt: {
         type: DataTypes.DATE,
