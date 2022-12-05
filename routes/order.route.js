@@ -1,6 +1,7 @@
 const express = require('express');
 const orderRouter = express.Router();
 const orderController = require('../controller/order.controller')
+const curd = require('express-crud-router').crud;
 
 
 const auth = require("../auth/verifyToken");

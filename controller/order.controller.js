@@ -6,6 +6,7 @@ const Product = require("../model/product.model");
 const sequelize = require("../model/Sequelize").sequelize;
 const DataTypes = require("sequelize").DataTypes;
 
+const curd = require("express-crud-router").crud;
 
 const getOrderDetails = asyncHandler(async (req, res, next) => {
   // const orderID = req.body["orderId"];
