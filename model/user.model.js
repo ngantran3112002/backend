@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 
 const sequelize = require('./Sequelize').sequelize;
-const Order = require('./orderModel')
+
 const User = sequelize.define('User',
     {
         id: {
@@ -25,14 +25,20 @@ const User = sequelize.define('User',
             type: DataTypes.STRING,
             allowNull: true,
             defaultValue: 'user1'
-
-
+        },
+        address: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            defaultValue: 'user1'
+        },
+        isAdmin: {
+            type: DataTypes.BOOLEAN,
+            allowNull: true,
         },
         phone: {
             type: DataTypes.STRING,
             allowNull: true,
             defaultValue: 'user1'
-
         }
     },
     {
@@ -40,6 +46,6 @@ const User = sequelize.define('User',
         timestamps: true,
     }
 )
-//db.food.hasMany(db.meal, {as : 'Food', foreignKey : 'idFood'});
+
 
 module.exports = User

@@ -1,6 +1,7 @@
 const config = require('../configs/config')
 const Sequelize = require('sequelize')
 
+
 const sequelize = new Sequelize(config.db.database, config.db.user, config.db.password, {
     host: config.db.host,
     dialect: 'mysql',
@@ -10,9 +11,17 @@ const sequelize = new Sequelize(config.db.database, config.db.user, config.db.pa
         acquire: 30000,
         idle: 10000
     },
+    define: {
+        timestamps: false
+    },
     dialectOptions: {
-        // socketPath: config.db.socketPath
-    }
+        dateStrings: 'DATETIME',
+    },
+    isParse:false,
+    options: {
+        // useUTC: false, // for reading from database
+        timezone: "+07:00"
+    },
 })
 
     sequelize.authenticate().then(() => {

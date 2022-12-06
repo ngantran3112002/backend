@@ -3,7 +3,7 @@ const sequelize = require('./Sequelize').sequelize;
 const Order = require('./orderModel');
 const Product = require('./productModel');
 
-const OrderDetail = sequelize.define('orderDetail',{
+const OrderDetail = sequelize.define('order_details',{
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -21,11 +21,13 @@ const OrderDetail = sequelize.define('orderDetail',{
         type: DataTypes.INTEGER
     },
     priceEach: {
-        type: DataTypes.DECIMAL(10,2)
+        type: DataTypes.DECIMAL(10,0)
     }
 },{
     tableName: 'order_details',
-    // timestamps: true
+    timestamps: false,
+    createAt: false,
+    updateAt: false
 })
 
 // Order.hasMany(OrderDetail, {
