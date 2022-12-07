@@ -11,6 +11,9 @@ const transactionRouter = require('./routes/transactionRoute')
 const adminProductRouter = require("./routes/admin.product.route");
 const adminCategoryRouter = require("./routes/admin.category.route");
 const cartItemRoute = require('./routes/cartItemRoute');
+const userRouter = require("./routes/user.route");
+const commentRouter = require('./routes/comment.route')
+const { notFound, errHandler } = require('./auth/middleware/error');
 
  
 
@@ -36,6 +39,12 @@ app.use('/order', orderRouter);
 app.use('/transaction', transactionRouter)
 app.use('/admin', adminProductRouter);
 app.use('/admin', adminCategoryRouter);
+app.use('/user', userRouter)
+app.use('/comment', commentRouter)
+
+
+app.use(notFound);
+app.use(errHandler);
 
 app.get('/', (req, res) => {
     res.send("WORK")
