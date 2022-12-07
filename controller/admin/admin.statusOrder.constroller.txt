@@ -1,7 +1,7 @@
-const Order = require('../../model/orderModel');
+const Order = require('../../model/order.model');
 const Status = require('../../model/statusOrder');
 const OrderDetail = require('../../model/orderDetailsModel');
-const Product = require('../../model/productModel');
+const Product = require('../../model/product.model');
 
 module.exports = {
     changeStatus: async(req, res) => {

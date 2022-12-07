@@ -4,7 +4,7 @@ const sequelize = require('../model/Sequelize').sequelize;
 const Order = require('../model/orderModel');
 const OrderDetail = require('../model/orderDetailsModel');
 const Payment = require('../model/paymentModel');
-const Product = require('../model/productModel');
+const Product = require('../model/product.model');
 const User = require('../model/userModel');
 const { or } = require('sequelize');
 

@@ -1,7 +1,7 @@
 const {createConfigItemSync} = require('@babel/core')
 const {Sequelize, Op} = require('sequelize')
 // const sequelize = require('../model/Sequelize').sequelize
-const Product = require('../model/productModel')
+const Product = require('../model/product.model')
 const {sequelize} = require('../model/Sequelize')
 const querystringConverter = require('sequelize-querystring-converter');
 const queryParser = require("sequelize-query")(sequelize)

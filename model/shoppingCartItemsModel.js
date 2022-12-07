@@ -1,7 +1,7 @@
 // luu thong tin cac item trong gio hang 
 const {DataTypes} = require('sequelize');
 const sequelize = require('./Sequelize').sequelize;
-const Product = require('./productModel');
+const Product = require('./product.model');
 const ShoppingSession = require('./shoppingCartModel');
 
 const CartItem = sequelize.define('cart_item', {

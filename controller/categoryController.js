@@ -6,7 +6,7 @@ const Payment = require('../model/paymentModel');
 
 
 let getAllCategory = asyncHandler(async (req, res) => {
-    const statement = `SELECT id, name, image, description, parentID
+    const statement = `SELECT id, name, description
             FROM admin.product_category
             WHERE parentID is null;`
     const [rows, fields] = await database.pool.execute(statement);
