@@ -1,10 +1,12 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const User = require('../model/user.model');
+const User = require('../model/userModel');
 
 
 
 let saltRounds = 10;
+
+
 //hash password
 let hashPassword = (password) => {
     return new Promise(async (resolve, reject) => {
@@ -46,14 +48,13 @@ let RegisterUser = async (req, res) => {
                 address: address,
                 isAdmin: isAdmin
             })
+            // save to db
             await newUser.save();
             return res.status(200).json({
                 message: "ok",
                 data: newUser
             })
         }
-
-        // save to db
 
 
     } catch (err) {
@@ -62,7 +63,6 @@ let RegisterUser = async (req, res) => {
 }
 
 const LoginUser = async (req, res) => {
-
     try {
         let email = req.body.email;
         let password = req.body.password

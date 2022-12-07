@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {checkToken} = require('../middleware/token_validation');
+const {checkToken} = require('../auth/middleware/token_validation');
 const {createCartItem, deleteCartItem, getCartItems}  = require('../controller/cartItemController');
 
 router.post('/cartItem', checkToken, createCartItem);

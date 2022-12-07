@@ -1,6 +1,6 @@
 const CartItem = require('../model/shoppingCartItemsModel');
 const Shopping_session = require('../model/shoppingCartModel'); 
-const Product = require('../model/productModel');
+const Product = require('../model/product.model');
 const { sequelize } = require('../model/Sequelize');
 module.exports = {
     createCartItem: async(req, res) => {

@@ -1,4 +1,5 @@
 const Comment = require('../model/comment.model');
+const User = require('../model/userModel');
 
 
 const createComment = async (req, res) => {
@@ -24,6 +25,7 @@ const deleteComment = async (req, res) => {
         await Comment.destroy({
             where: {
                 id: id,
+
             }
         })
         return res.status(200).json({

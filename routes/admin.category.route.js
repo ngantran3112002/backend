@@ -7,8 +7,8 @@ const {
 } = require('../controller/admin/admin.category.controller');
 
 const router = require('express').Router();
-const {checkToken} = require('../middleware/token_validation');
-const {upload} = require('../middleware/upload');
+const {checkToken} = require('../auth/middleware/token_validation');
+const {upload} = require('../auth/middleware/upload');
 
 router.post('/category', checkToken,upload.single('image'),createCategory);
 router.get('/category/:id',checkToken, getCategoryByCategoryId);

@@ -1,6 +1,7 @@
 const {DataTypes} = require('sequelize');
 const sequelize = require('./Sequelize').sequelize;
-const Product = require('./product.model')
+const Product = require('./product.model');
+
 const Category = sequelize.define('product_category',{
     id: {
         type: DataTypes.INTEGER,
@@ -21,6 +22,9 @@ const Category = sequelize.define('product_category',{
     freezeTableName: true
 });
 
+Category.hasMany(Product, {
+    foreignKey: 'categoryId'
+})
 
 
 module.exports = Category;

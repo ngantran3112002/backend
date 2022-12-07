@@ -16,7 +16,7 @@ const getOrderDetails = asyncHandler(async (req, res, next) => {
     include: {
       model: OrderDetail,
       where: {
-        orderId: orderId,
+        order_id: orderId,
       },
     },
   });
@@ -44,7 +44,8 @@ const getAllOrder = asyncHandler(async (req, res, next) => {
     .set("X-Total-Count", results.count)
     .set(
       "Content-Range",
-      `orders ${Object.values(test)[0]}-${Object.values(test)[1]}/${results.count
+      `orders ${Object.values(test)[0]}-${Object.values(test)[1]}/${
+        results.count
       }`
     )
     .json(results.rows);
@@ -60,25 +61,34 @@ const createOrder = asyncHandler(async (req, res, next) => {
   await sequelize
     .transaction(async (t1) => {
       //tạo order
-      const order = await Order.create(
-        {
-          user_id: req_user_id,
-          payment_id: 2,
-          total: req_total,
-          status: "Đã được giao",
-          create_at: DataTypes.NOW,
-          update_at: DataTypes.NOW,
-        },
-        { transaction: t1 }
-      );
+      let order;
+      try {
+        order = await Order.create(
+          {
+            user_id: req_user_id,
+            payment_id: 2,
+            total: req_total,
+            status: "Đã được giao",
+            create_at: DataTypes.NOW,
+            update_at: DataTypes.NOW,
+          },
+          { transaction: t1 }
+        );
+      } catch(err){
+        res.status(500).json({
+          "message": err
+        })
+      }
+  
       console.log("false");
       const data = req_orderDetails.map((item) => ({
-        orderId: order.id,
+        order_id: order.id,
         productId: item.product_id,
         quantityOrdered: item.quantity,
         priceEach: item.priceEach,
       }));
 
+      
       await OrderDetail.bulkCreate(data, { transaction: t1 });
     })
     .then(() => {
