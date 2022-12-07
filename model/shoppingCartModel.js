@@ -1,7 +1,7 @@
 // lưu giỏ hàng
 const {DataTypes} = require('sequelize');
 const sequelize = require('./Sequelize').sequelize;
-const User = require('./userModel');
+const User = require('./user.model');
 
 const ShoppingSession = sequelize.define('shopping_session', {
     id: {

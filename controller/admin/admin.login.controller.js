@@ -1,6 +1,6 @@
 const {sign, JsonWebTokenError} = require('jsonwebtoken');
 const jwt = require('jsonwebtoken')
-const Admin = require('../../model/adminModel')
+const Admin = require('../../model/admin.model')
 
 module.exports = {
     login: async(req, res) => {

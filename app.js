@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 // const productRouter = require('./routes/productRoute')
-const categoryRouter = require('./routes/categoryRoute')
+const categoryRouter = require('./routes/category.route')
 const productRouter = require('./routes/product.route')
 const orderRouter = require('./routes/order.route')
 // const transactionRouter = require('./routes/transactionRoute')

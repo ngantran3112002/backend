@@ -1,4 +1,4 @@
-const CartItem = require('../model/shoppingCartItemsModel');
+const CartItem = require('../model/shoppingCartItems.model');
 const Shopping_session = require('../model/shoppingCartModel'); 
 const Product = require('../model/product.model');
 const { sequelize } = require('../model/Sequelize');

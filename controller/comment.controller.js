@@ -1,5 +1,5 @@
 const Comment = require('../model/comment.model');
-const User = require('../model/userModel');
+const User = require('../model/user.model');
 
 
 const createComment = async (req, res) => {
