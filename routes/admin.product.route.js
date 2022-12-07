@@ -7,8 +7,8 @@ const {
 } = require('../controller/admin/admin.product.controller');
 const {login} = require("../controller/admin/admin.login.controller")
 const router = require('express').Router();
-const {checkToken} = require('../middleware/token_validation');
-const {upload} = require('../middleware/upload');
+const {checkToken} = require('../auth/middleware/token_validation');
+const {upload} = require('../auth/middleware/upload');
 const {changeStatus} = require('../controller/admin/admin.statusOrder.constroller')
 
 router.post('/products', checkToken,upload.single('image'),createProduct);

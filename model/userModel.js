@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 
 const sequelize = require('./Sequelize').sequelize;
-const Order = require('./orderModel')
+
 const User = sequelize.define('User',
     {
         id: {
@@ -18,21 +18,28 @@ const User = sequelize.define('User',
         password: {
             type: DataTypes.STRING,
             allowNull: true,
-            defaultValue: '123456'
+            defaultValue: 'user1'
 
+        },
+        address: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            defaultValue: "user1"
         },
         email: {
             type: DataTypes.STRING,
             allowNull: true,
             defaultValue: 'user1'
-
-
         },
         phone: {
             type: DataTypes.STRING,
             allowNull: true,
             defaultValue: 'user1'
 
+        },
+        isAdmin: {
+            type: DataTypes.BOOLEAN,
+            allowNull: true,
         }
     },
     {
@@ -40,6 +47,6 @@ const User = sequelize.define('User',
         timestamps: true,
     }
 )
-//db.food.hasMany(db.meal, {as : 'Food', foreignKey : 'idFood'});
+
 
 module.exports = User
