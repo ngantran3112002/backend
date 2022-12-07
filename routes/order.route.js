@@ -9,7 +9,7 @@ const Order = require('../model/order.model');
 const { where } = require('sequelize-date');
 const { destroy } = require('express-crud-router/lib/delete');
 // orderRouter.post('/add', orderController.addOrder)
-orderRouter.get('/details',auth.verifyController ,orderController.getOrderDetails)
+orderRouter.get('/details/:id',auth.verifyController ,orderController.getOrderDetails)
 orderRouter.get('/detailsTest',orderController.getOrderDetails)
 // orderRouter.get('/user/all', orderController.getAllOrder)
 orderRouter.post('/add/create', orderController.createOrder)

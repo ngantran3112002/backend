@@ -16,7 +16,7 @@ const getOrderDetails = asyncHandler(async (req, res, next) => {
     include: {
       model: OrderDetail,
       where: {
-        orderId: orderId,
+        order_id: orderId,
       },
     },
   });
