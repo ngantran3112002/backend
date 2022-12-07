@@ -12,7 +12,7 @@ const Product = sequelize.define('product',
             allowNull: false
         } ,
         description:{ type: DataTypes.STRING, defaultValue: 'không có link ảnh'},
-        categoryId:{ type: DataTypes.INTEGER, defaultValue: 0},
+        categoryId:{ type: DataTypes.INTEGER},
         quantityInStock:{ type: DataTypes.INTEGER(15), defaultValue: 10,},
         price: {
             type: DataTypes.DECIMAL(15,0),
@@ -39,6 +39,7 @@ const Product = sequelize.define('product',
         timestamps: false,
     }
 )
+
 
 
 module.exports = Product;

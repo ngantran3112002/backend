@@ -12,4 +12,3 @@ router.get('/pagetest/:page', asyncHandler(productController.getProductList));
 // router.get()
 
 module.exports = router;
-
