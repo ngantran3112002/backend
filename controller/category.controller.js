@@ -6,9 +6,7 @@ const Payment = require('../model/payment.model');
 
 let getAllCategory = asyncHandler(async (req, res) => {
     await Category.findAll({
-        where: {
-            parentId: null,
-        }
+
     }).then((categories) => {
         return res.status(200).json({categories})
     })
