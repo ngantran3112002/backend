@@ -75,7 +75,7 @@ const getProductDetail = async (req, res, next) => {
     // console.log(req.params.p)
     return await Product.findOne({
         where: {
-            productId: productId,
+            id: productId,
         }
     })
         .then((productDetail) => {
