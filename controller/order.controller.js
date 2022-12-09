@@ -83,7 +83,7 @@ const createOrder = asyncHandler(async (req, res, next) => {
       console.log("false");
       const data = req_orderDetails.map((item) => ({
         order_id: order.id,
-        productId: item.product_id,
+        product_id: item.product_id,
         quantityOrdered: item.quantity,
         priceEach: item.priceEach,
       }));
@@ -123,9 +123,9 @@ const editOrder = asyncHandler(async (req, res, next) => {
 });
 const getAll = asyncHandler(async (req, res, next) => {
   const ress = await Order.findAndCountAll({
-    include: {
-      model: Product,
-    },
+    // include: {
+    //   model: Product,
+    // },
     distinct: true,
   });
   console.log(ress);

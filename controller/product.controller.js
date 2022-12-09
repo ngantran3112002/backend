@@ -18,7 +18,7 @@ const getAllProducts = async (req, res, next) => {
 }
 
 const getProductList = async (req, res, next) => {
-    let finalQuery = await queryParser.parse(req)
+    let finalQuery =  queryParser.parse(req)
     let page = !req.params.page ? 1 : req.params.page;
     let skip = (page - 1) * 9
     finalQuery = {...finalQuery, offset: skip, limit: 9}

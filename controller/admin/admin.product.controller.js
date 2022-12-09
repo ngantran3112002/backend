@@ -117,38 +117,5 @@ module.exports = {
         });
         
     }
-    // login: (req, res) => {
-    //     const data = req.body;
-    //     getAdminAccount(data.username, (err, results) => {
-    //         if(err) {
-    //             return res.json({
-    //                 success: 0,
-    //                 message: "invalid username or password"
-    //             });
-    //         }
-    //         // const result = compareSync(data.password, results.Password);
-    //         console.log(data.password)
-    //         console.log(results.password);
-    //         if(data.password === results.password) {
-    //             results.password = undefined;
-    //             const jsontoken = sign({result:results}, 'qwe1234',{
-    //                 expiresIn: "1h"
-    //             })
-
-    //             return res.json({
-    //                 success: 1,
-    //                 message: "login successfully",
-    //                 token: jsontoken
-    //             });
-
-    //         }
-    //         else{
-    //             return res.json({
-    //                 success: 0,
-    //                 message: "invalid account or password"
-    //             });
-    //         }
-    //     });
-
-    // }
+   
 }
