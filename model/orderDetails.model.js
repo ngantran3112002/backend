@@ -30,9 +30,15 @@ const OrderDetail = sequelize.define('order_details',{
     updateAt: false
 })
 
+// Product.hasMany(OrderDetail,
+//     {
+//         foreignKey: 'product_id', 
+//     }
+// );
+
 Product.hasMany(OrderDetail,
     {
-        foreignKey: 'product_id', 
+        foreignKey: 'product_id',  // You need to define the foreign key
     }
 );
 

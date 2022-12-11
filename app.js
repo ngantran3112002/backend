@@ -39,8 +39,8 @@ sequelize.sync({force: false});
 
 app.use('/category', categoryRouter);
 app.use('/order', orderRouter);
-app.use('/adminProduct', adminProductRouter)
-app.use('/adminCategory', adminCategoryRouter)
+// app.use('/adminProduct', adminProductRouter)
+// app.use('/adminCategory', adminCategoryRouter)
 app.use('/product', productRouter);
 app.use('/product',cartItemRoute);
 app.use('/order', orderRouter);

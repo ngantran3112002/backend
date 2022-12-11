@@ -7,14 +7,15 @@ const {
 } = require('../controller/admin/admin.category.controller');
 
 const router = require('express').Router();
-const {checkToken} = require('../auth/middleware/token_validation');
+// const {checkToken} = require('../auth/middleware/token_validation');
+const {verifyController} = require('../auth/verifyToken')
 const {upload} = require('../auth/middleware/upload');
 
-router.post('/category', checkToken,upload.single('image'),createCategory);
-router.get('/category/:id',checkToken, getCategoryByCategoryId);
-router.get('/category', checkToken,getCategories);
-router.patch('/category/:id',checkToken,upload.single('image'),updateCategory);
-router.delete('/category/:id', checkToken,deleteCategory);
+router.post('/category', verifyController,upload.single('image'),createCategory);
+router.get('/category/:id',verifyController, getCategoryByCategoryId);
+router.get('/category', verifyController,getCategories);
+router.patch('/category/:id',verifyController,upload.single('image'),updateCategory);
+router.delete('/category/:id', verifyController,deleteCategory);
 
 
 module.exports = router;

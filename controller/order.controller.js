@@ -83,7 +83,7 @@ const createOrder = asyncHandler(async (req, res, next) => {
       console.log("false");
       const data = req_orderDetails.map((item) => ({
         order_id: order.id,
-        productId: item.product_id,
+        product_id: item.product_id,
         quantityOrdered: item.quantity,
         priceEach: item.priceEach,
       }));
