@@ -123,9 +123,9 @@ const editOrder = asyncHandler(async (req, res, next) => {
 });
 const getAll = asyncHandler(async (req, res, next) => {
   const ress = await Order.findAndCountAll({
-    include: {
-      model: Product,
-    },
+    // include: {
+    //   model: Product,
+    // },
     distinct: true,
   });
   console.log(ress);

@@ -40,7 +40,3 @@ const deleteComment = async (req, res) => {
 
 }
 
-
-module.exports = {
-    createComment, deleteComment
-}

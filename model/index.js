@@ -7,11 +7,13 @@ const Category = require('./category.model')
 const UserDetails = require('./userDetails.model')
 const Comment = require('./comment.model')
 
-Category.hasMany(Category, {
-    foreignKey: 'parentId',
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE'
-});
+const sequelize = require('sequelize').Sequelize
+
+// Category.hasMany(Category, {
+//     foreignKey: 'parentId',
+//     onDelete: 'CASCADE',
+//     onUpdate: 'CASCADE'
+// });
 
 
 // if A has a b_id column, then A belongsTo B
@@ -43,6 +45,7 @@ OrderDetail.belongsTo(Order, {
     foreignKey: 'orderId'
 });
 
+sequelize.sync({alter: true})
 
 module.exports = {
     User, Order, OrderDetail,

@@ -36,15 +36,15 @@ const OrderDetail = sequelize.define('order_details',{
 //     }
 // );
 
-Product.hasMany(OrderDetail,
-    {
-        foreignKey: 'product_id',  // You need to define the foreign key
-    }
-);
+// Product.hasMany(OrderDetail,
+//     {
+//         foreignKey: 'product_id',  // You need to define the foreign key
+//     }
+// );
 
-Order.hasMany(OrderDetail, {
-    foreignKey: 'order_id'
-});
+// Order.hasMany(OrderDetail, {
+//     foreignKey: 'order_id'
+// });
 
 
 module.exports = OrderDetail;
