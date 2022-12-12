@@ -26,7 +26,7 @@ app.use(bodyParser.json())
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, '../build')));
 
-sequelize.sync({alter: true}).then(() => console.log("done")).catch((err) => console.log(err));
+sequelize.sync().then(() => console.log("done")).catch((err) => console.log(err));
 // const model = require('./model/index')
 
 app.use('/static', express.static('public'))

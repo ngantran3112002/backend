@@ -7,7 +7,7 @@ const Category = require('./category.model')
 const UserDetails = require('./userDetails.model')
 const Comment = require('./comment.model')
 
-const sequelize = require('sequelize').Sequelize
+// const sequelize = require('./Sequelize').sequelize
 
 // Category.hasMany(Category, {
 //     foreignKey: 'parentId',
@@ -45,7 +45,7 @@ OrderDetail.belongsTo(Order, {
     foreignKey: 'orderId'
 });
 
-sequelize.sync({alter: true})
+// sequelize.sync()
 
 module.exports = {
     User, Order, OrderDetail,
