@@ -58,51 +58,43 @@ const createOrder = asyncHandler(async (req, res, next) => {
     req.body["orderDetails"],
   ];
 
-  console.log(req_orderDetails)
-
+  
   await sequelize
-    .transaction(async (t1) => {
-      //tạo order
-      let order;
-      try {
-        order = await Order.create(
-          {
+  .transaction(async (t1) => {
+    //tạo order
+    let order = await Order.create(
+        {
             user_id: req_user_id,
             // payment_id: 2,
             total: req_total,
             status: "Chờ xét duyệt",
             create_at: DataTypes.NOW,
             update_at: DataTypes.NOW,
+            userId: req_user_id,
           },
           { transaction: t1 }
-        );
-      } catch(err){
-        res.status(500).json({
-          "message": err
-        })
-      }
-  
-      const data = req_orderDetails.map((item) => ({
-        orderId: order.id,
-        productId: item.product_id,
-        quantityOrdered: item.quantity,
-        priceEach: item.priceEach,
-      }));
-
+          );
+          console.log(req_orderDetails)
+          const data = await req_orderDetails.map((item) => ({
+            orderId: order.id,
+            productId: item.product_id,
+            quantityOrdered: item.quantity,
+            priceEach: item.priceEach,
+          }));
+          await OrderDetail.bulkCreate(data, { transaction: t1 });
       
-      await OrderDetail.bulkCreate(data, { transaction: t1 });
     })
     .then(() => {
       return res.status(200).json({
         message: "Đặt hàng thành công",
         stastus: 200,
       });
-    });
-  // .catch((err) => {
-  //     const newErr = new Error('giao dịch không thành công')
-  //     newErr.dev = err
-  //     next(newErr, req, res, next)}
-  // )
+    })
+    .catch((err) => {
+      const newErr = new Error('giao dịch không thành công')
+      newErr.stack = err
+      next(newErr, req, res, next)}
+  )
 });
 const deleteOrder = asyncHandler(async (req, res, next) => {
   await Order.destroy({
