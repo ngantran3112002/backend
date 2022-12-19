@@ -2,7 +2,6 @@ const Order = require('./order.model')
 const OrderDetail = require('./orderDetails.model')
 const Product = require('./product.model')
 const User = require('./user.model')
-const Payment = require('./payment.model')
 const Category = require('./category.model')
 const UserDetails = require('./userDetails.model')
 const Comment = require('./comment.model')
@@ -49,5 +48,5 @@ OrderDetail.belongsTo(Order, {
 
 module.exports = {
     User, Order, OrderDetail,
-    Product, Category, Payment, Comment
+    Product, Category, Comment
 }

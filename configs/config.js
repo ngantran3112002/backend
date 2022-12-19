@@ -2,7 +2,7 @@ const config = {
     db: {
         /* don't expose password or any sensitive info, done only for demo */
         // host: "10.102.18.99",
-        user: "root",
+        user: "w42g9_web",
         host: "localhost",
         password: "qwertyuiop",
         database: "w42g9_web",

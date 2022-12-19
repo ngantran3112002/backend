@@ -26,7 +26,7 @@ app.use(bodyParser.json())
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, '../build')));
 
-sequelize.sync().then(() => console.log("done")).catch((err) => console.log(err));
+sequelize.sync({}).then(() => console.log("done")).catch((err) => console.log(err));
 // const model = require('./model/index')
 
 app.use('/static', express.static('public'))
@@ -43,7 +43,7 @@ app.get('/', (req, res) => {
 
 
 
-app.listen(5000, () => {
+app.listen(3001, () => {
     console.log("Running")
 })
 

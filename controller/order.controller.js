@@ -16,7 +16,7 @@ const getOrderDetails = asyncHandler(async (req, res, next) => {
     include: {
       model: OrderDetail,
       where: {
-        order_id: orderId,
+        orderId: orderId,
       },
     },
   });
@@ -58,6 +58,8 @@ const createOrder = asyncHandler(async (req, res, next) => {
     req.body["orderDetails"],
   ];
 
+  console.log(req_orderDetails)
+
   await sequelize
     .transaction(async (t1) => {
       //tạo order
@@ -66,9 +68,9 @@ const createOrder = asyncHandler(async (req, res, next) => {
         order = await Order.create(
           {
             user_id: req_user_id,
-            payment_id: 2,
+            // payment_id: 2,
             total: req_total,
-            status: "Đã được giao",
+            status: "Chờ xét duyệt",
             create_at: DataTypes.NOW,
             update_at: DataTypes.NOW,
           },
@@ -80,10 +82,9 @@ const createOrder = asyncHandler(async (req, res, next) => {
         })
       }
   
-      console.log("false");
       const data = req_orderDetails.map((item) => ({
-        order_id: order.id,
-        product_id: item.product_id,
+        orderId: order.id,
+        productId: item.product_id,
         quantityOrdered: item.quantity,
         priceEach: item.priceEach,
       }));
@@ -123,9 +124,9 @@ const editOrder = asyncHandler(async (req, res, next) => {
 });
 const getAll = asyncHandler(async (req, res, next) => {
   const ress = await Order.findAndCountAll({
-    // include: {
-    //   model: Product,
-    // },
+    include: {
+      model: Product,
+    },
     distinct: true,
   });
   console.log(ress);

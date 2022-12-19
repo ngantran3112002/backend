@@ -472,7 +472,7 @@ let products = [
     }
 ];
 
-let path = 'http://localhost:5000/static/images/';
+let path = 'http://localhost:3001/static/images/';
 for(let i = 0; i < products.length; ++i) {
     products[i]["image"] = path + 'p' + (Math.floor(Math.random() * 14) + 1) + '.jpg';
 };

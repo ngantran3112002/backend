@@ -1,7 +1,6 @@
 const Category = require("../model/category.model")
 
 const asyncHandler = require('express-async-handler')
-const Payment = require('../model/payment.model');
 
 
 let getAllCategory = asyncHandler(async (req, res) => {
