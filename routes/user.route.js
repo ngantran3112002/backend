@@ -7,6 +7,6 @@ const userRouter = express.Router();
 
 userRouter.post('/register', userController.RegisterUser)
 userRouter.post('/login', userController.LoginUser)
-userRouter.post('/changePassword', middleware.verifyController, userController.changePassword)
+userRouter.post('/changePassword', userController.changePassword)
 userRouter.get('/viewUser/:id', middleware.verifyController, userController.viewUser)
 module.exports = userRouter;
