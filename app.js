@@ -4,6 +4,9 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const multer  = require('multer')
+// const upload = multer({ dest: 'public/images' })
+
 
 const routers = require('./routes')
 const { notFound, errHandler } = require('./auth/middleware/error');
@@ -24,10 +27,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 
 app.use(cookieParser());
-app.use('/static', express.static('public'))
-app.use(express.static(path.join(__dirname, '../build')));
 
-// sequelize.sync({force: true}).then(() => console.log("done")).catch((err) => console.log(err));
+  
+
+
+app.use('/static', express.static('public'))
+// app.use(express.static(path.join(__dirname, '../build')));
+
+
+
+sequelize.sync({}).then(() => console.log("done")).catch((err) => console.log(err));
 // const model = require('./model/index')
 
 
