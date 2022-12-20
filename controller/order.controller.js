@@ -52,30 +52,33 @@ const getAllOrder = asyncHandler(async (req, res, next) => {
 });
 
 const createOrder = asyncHandler(async (req, res, next) => {
-  const [req_user_id, req_total, req_orderDetails] = [
-    req.body["user_id"],
-    req.body["total"],
-    req.body["orderDetails"],
+  const [body ,note] = [
+    // req.body["_body.user_id"],
+    // req.body["_body.total"],
+    // req.body["_body.orderDetails"],
+    req.body["_body"],
+    req.body["note"]
   ];
 
+    console.log(body["user_id"])
   
   await sequelize
   .transaction(async (t1) => {
     //tạo order
     let order = await Order.create(
         {
-            user_id: req_user_id,
-            // payment_id: 2,
-            total: req_total,
+            user_id: body.user_id,
+            total: body.total,
             status: "Chờ xét duyệt",
+            UserId: body.user_id,
+            note: note,
             create_at: DataTypes.NOW,
             update_at: DataTypes.NOW,
-            userId: req_user_id,
           },
           { transaction: t1 }
           );
-          console.log(req_orderDetails)
-          const data = await req_orderDetails.map((item) => ({
+          console.log(body.orderDetails)
+          const data = await body.orderDetails.map((item) => ({
             orderId: order.id,
             productId: item.product_id,
             quantityOrdered: item.quantity,

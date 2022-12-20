@@ -78,7 +78,7 @@ let RegisterAdmin = async (req, res) => {
                 where: { email: email }
             })
             if (existUser) {
-                return res.json("Existed Email")
+                return res.status(400).json("Existed Email")
             } else {
                 let hashUserPassword = await hashPassword(password)
                 // create user

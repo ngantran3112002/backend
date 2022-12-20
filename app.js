@@ -36,7 +36,7 @@ app.use('/static', express.static('public'))
 
 
 
-sequelize.sync({}).then(() => console.log("done")).catch((err) => console.log(err));
+sequelize.sync({alter: true}).then(() => console.log("done")).catch((err) => console.log(err));
 // const model = require('./model/index')
 
 

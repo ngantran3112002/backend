@@ -19,6 +19,11 @@ const Order = sequelize.define('order', {
         type: DataTypes.TEXT,
         defaultValue: "Chờ xét duyệt",
     },
+    note: {
+        type: DataTypes.TEXT,
+        defaultValue: "Không có ghi chú",
+
+    },
     createdAt: {
         type: DataTypes.DATE,
         allowNull: false,
