@@ -24,12 +24,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 
 app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, '../build')));
+app.use('/static', express.static('public'))
+app.use(express.static(path.join(__dirname, '../build')));
 
 // sequelize.sync({force: true}).then(() => console.log("done")).catch((err) => console.log(err));
 // const model = require('./model/index')
 
-app.use('/static', express.static('public'))
 
 // app.use('/comment', commentRouter)
 app.use('/api',routers)
@@ -37,7 +37,7 @@ app.use('/api',routers)
 app.use(notFound);
 app.use(errHandler);
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
     res.send("WORK")
 })
 
