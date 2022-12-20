@@ -3,6 +3,7 @@ const { where } = require("sequelize-date");
 const Order = require("../model/order.model");
 const OrderDetail = require("../model/orderDetails.model");
 const Product = require("../model/product.model");
+const User = require("../model/user.model");
 const sequelize = require("../model/Sequelize").sequelize;
 const DataTypes = require("sequelize").DataTypes;
 
@@ -120,9 +121,9 @@ const editOrder = asyncHandler(async (req, res, next) => {
 const getAll = asyncHandler(async (req, res, next) => {
   const ress = await Order.findAndCountAll({
     include: {
-      model: Product,
+      model: User,
     },
-    distinct: true,
+    // distinct: true,
   });
   console.log(ress);
   return res.status(200).json(ress);
