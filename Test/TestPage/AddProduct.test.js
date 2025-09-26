@@ -38,7 +38,7 @@ describe("Admin test Suite", function () {
             "This is an added product",
             "123456",
             "6",
-            "D:/Mã 1.png"
+            "C:/Users/Admin/Downloads/MÃ 1.png"
         )
 
 
@@ -49,5 +49,3 @@ describe("Admin test Suite", function () {
 
     })
 })
-
-// npx mocha "../TestPage/*.test.js" --no-timeouts --parallel --reporter mochawesome --require mochawesome/register
