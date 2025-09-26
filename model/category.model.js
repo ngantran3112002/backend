@@ -6,14 +6,14 @@ const Category = sequelize.define('product_category',{
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        autoIncrement: true,
+        autoIncrement: false,
         primaryKey: true,
         unique: true
     },
     name: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
+        unique: false
     },
     description: {
         type: DataTypes.STRING
