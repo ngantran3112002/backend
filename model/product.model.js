@@ -8,7 +8,7 @@ const Product = sequelize.define('product',
         },
         name:{
             type: DataTypes.STRING(255),
-            unique: true,
+            unique: false,
             allowNull: false
         } ,
         description:{ type: DataTypes.STRING, defaultValue: 'không có link ảnh'},
